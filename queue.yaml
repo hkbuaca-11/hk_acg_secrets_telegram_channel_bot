@@ -1,5 +1,6 @@
 queue:
 - name: default
   rate: 5/s
-  # rate: 1/m
+  # rate: 1/s
+  # rate: 5/m
   max_concurrent_requests: 1

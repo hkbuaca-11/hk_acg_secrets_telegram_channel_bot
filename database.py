@@ -39,9 +39,9 @@ class StoryPost(ndb.Model):
   def cvt_FBObject_StoryPost(fb_object):
     ret = {
       "fbid": fb_object['id'],
-      "message": None,
+      "message": fb_object.get('message', None),
       "draft_time": None,
-      "post_time": fb_object['created_time'],
+      "post_time": datetime.strptime(fb_object['created_time'], '%Y-%m-%dT%H:%M:%S+0000'),  # post_time = '2017-07-09T11:28:32+0000'
       "likes": fb_object['reactions_like']['summary']['total_count'],
       "loves": fb_object['reactions_love']['summary']['total_count'],
       "wows": fb_object['reactions_wow']['summary']['total_count'],
@@ -52,24 +52,18 @@ class StoryPost(ndb.Model):
       "shares": 0
     }
 
-    if fb_object['message']:
-      ret['message'] = fb_object['message']
-
     if "shares" in fb_object:
       ret['shares'] = fb_object['shares']['count']
-
-    # post_time = '2017-07-09T11:28:32+0000'
-    post_time = datetime.strptime(post_time, '%Y-%m-%dT%H:%M:%S%z')
 
     draft_time = None
     chk_draft_time_result = re.findall(u"(投稿日期|Submitted)[:：]\s*(.*?)$", fb_object['message'])
     if chk_draft_time_result:
       str_datetime = chk_draft_time_result[0][1]
       # '%B %d, %Y %-I:%M:%S %p HKT'
-      if draft_time = None:
+      if draft_time is None:
         draft_time = try_strptime(post_time, '%Y年%m月%d日 %H:%M HKT')
       # 'July 5, 2017 5:35:26 AM HKT'
-      if draft_time = None:
+      if draft_time is None:
         draft_time = try_strptime(post_time, '%B %d, %Y %I:%M:%S %p HKT')
     ret['draft_time'] = draft_time
 
