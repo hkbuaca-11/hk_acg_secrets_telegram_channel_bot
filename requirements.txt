@@ -2,3 +2,4 @@
 # in `lib/` subdirectory.
 
 Flask==0.10
+facebook-sdk==2.0.0

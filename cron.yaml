@@ -1,4 +1,10 @@
 cron:
-- description: check top stories
-  url: /cron
-  schedule: every 10 minutes synchronized
+# - description: check top stories in pink board
+#   url: /cron/pink
+#   schedule: every 10 minutes synchronized
+# - description: check top stories in blue board
+#   url: /cron/blue
+#   schedule: every 10 minutes synchronized
+# - description: check top stories in black board
+#   url: /cron/black
+#   schedule: every 10 minutes synchronized
