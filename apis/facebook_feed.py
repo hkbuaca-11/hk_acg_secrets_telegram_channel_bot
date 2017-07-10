@@ -6,9 +6,9 @@ from google.appengine.api import urlfetch
 BASE_URL = "https://graph.facebook.com/v2.9/{method}?{params}"
 
 PAGES_ID = {
-            'pink': 'acg.secrets',
-            'blue': 'acg.secrets.textboard',
-            'black': '146482875909279'
+            'pink': '509012835916517',  # ACG Secrets.HK
+            'blue': '1523006877716439',  # ACG Secrets.HK 討論串分站
+            'black': '146482875909279'  # Acg黑板1.0
           }
 
 ACCESS_TOKEN = '1983828995182433|Htv7MJ8BnulVO1_UjArhm290GqU'
@@ -41,7 +41,7 @@ def call_method_async(method, callback, params=None):
 
 def get_page_feed(page):
   feeds=[]
-  result = call_method('%s/feed' % PAGES_ID[page], 
+  result = call_method('%s/posts' % PAGES_ID[page],  # no 'feed', will grab others' posts
     params={'fields':'created_time,id', 
             'since':int(time.time()) - 86400,   # within 24 hrs
             'limit': 100})

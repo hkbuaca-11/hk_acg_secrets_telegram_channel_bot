@@ -36,7 +36,9 @@ def task(stories, which_board):
 
 def pick_id(result, limit=100):
   lst = map(lambda e: e['id'], result['data'])
-  return [lst[i::limit] for i in xrange(limit)]
+  ret = [lst[i::limit] for i in xrange(limit)]
+  ret = ret[::-1]  # list(reversed(ret))
+  return ret
 
 
 @app.route('/cron/pink')
