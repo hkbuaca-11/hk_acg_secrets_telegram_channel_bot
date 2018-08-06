@@ -8,7 +8,9 @@ BASE_URL = "https://graph.facebook.com/v2.9/{method}?{params}"
 PAGES_ID = {
     'pink': '509012835916517',
     'blue': '1523006877716439',
-    'black': '146482875909279'
+    'black': '146482875909279',
+    'cos': '2127337204256629',
+    'music': '318183312053938'
 }
 
 ACCESS_TOKEN = '1983828995182433|Htv7MJ8BnulVO1_UjArhm290GqU'
