@@ -5,12 +5,10 @@ from google.appengine.api import urlfetch
 
 BASE_URL = 'https://api.telegram.org/bot{token}/{method}'
 
-BOTS_SECRETS = {
-    'pink': '333613762:AAH9g5PnU5VInxH1oLFA5Qp-h-C2LcDWuJQ',
-    'blue': '442432246:AAGUTaVz7pYssJ7pVvAim1PQTlNaKRBO80I',
-    'black': '442305057:AAEjNxDbyLW-DHArOmR3pN1h6EtMgXgxSzc'
-}
-
+# BOTS_SECRETS = {
+#     # ...
+# }
+from api_keys.telegram_bots import BOTS_SECRETS
 
 def call_method(with_bot, method, data):
     logging.debug("request %s payload with_bot=%s" % (method, with_bot))

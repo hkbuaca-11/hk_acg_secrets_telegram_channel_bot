@@ -86,8 +86,14 @@ class StoryPost(ndb.Model):
         logging.info('SEND: {}'.format(story_id))
 
         short_url = "https://fb.com/{}".format(story_id)
+        # app_url = "fb://post/{}".format(story_id)
+        mobile_url = 'https://m.facebook.com/story.php?story_fbid={}&id={}'.format(
+            *list(reversed(story_id.split('_')))
+        )
 
         message = u'\U0001f517 {}\n'.format(short_url)
+        # message = u'\U0001f4f1 {}\n'.format(app_url)
+        message += u'\U0001f4f1 {}\n'.format(mobile_url)
         message += u'\n{}\n\n'.format(story.get('message'))
 
         reactions = 0

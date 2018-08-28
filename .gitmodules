@@ -1,0 +1,4 @@
+[submodule "api_keys"]
+	path = api_keys
+	url = https://github.com/hkgsherlock/hk_acg_secrets_gae_apikeys.git
+	branch = master

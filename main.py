@@ -1,7 +1,7 @@
 import json
 import logging
 
-from flask import Flask
+from flask import Flask, redirect
 from google.appengine.ext import deferred
 
 from apis.facebook_feed import get_page_feed, get_post_async
@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return ""
+    return redirect("https://t.me/hk_acg_feeds", code=302)
 
 
 def task(stories, which_board):
@@ -65,6 +65,33 @@ def cron_black():
     chunks = pick_id(stories, 50)
     for chunk in chunks:
         deferred.defer(task, chunk, 'black')
+    return 'OK'
+
+
+@app.route('/cron/cos')
+def cron_cos():
+    stories = get_page_feed('cos')
+    chunks = pick_id(stories, 50)
+    for chunk in chunks:
+        deferred.defer(task, chunk, 'cos')
+    return 'OK'
+
+
+@app.route('/cron/music_plastic')
+def cron_music_plastic():
+    stories = get_page_feed('music_plastic')
+    chunks = pick_id(stories, 50)
+    for chunk in chunks:
+        deferred.defer(task, chunk, 'music_plastic')
+    return 'OK'
+
+
+@app.route('/cron/maid')
+def cron_maid():
+    stories = get_page_feed('maid')
+    chunks = pick_id(stories, 50)
+    for chunk in chunks:
+        deferred.defer(task, chunk, 'maid')
     return 'OK'
 
 

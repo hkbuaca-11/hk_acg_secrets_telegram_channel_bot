@@ -7,14 +7,18 @@ BASE_URL = "https://graph.facebook.com/v2.9/{method}?{params}"
 
 PAGES_ID = {
     'pink': '509012835916517',
-    'blue': '1523006877716439',
+    'blue': '1802109876542846', #1523006877716439
     'black': '146482875909279',
     'cos': '2127337204256629',
-    'music': '318183312053938'
+    'music_plastic': '318183312053938',
+    'music_crush': '',
+    'anon_music': '',
+    'music_plastic_crush': '',
+    'maid': '213370562463886'
 }
 
-ACCESS_TOKEN = '1983828995182433|Htv7MJ8BnulVO1_UjArhm290GqU'
-
+# ACCESS_TOKEN = #...
+from api_keys.facebook_token import ACCESS_TOKEN
 
 def make_param_str(params=None):
     params['access_token'] = ACCESS_TOKEN
