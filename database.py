@@ -129,9 +129,18 @@ class StoryPost(ndb.Model):
             result = send_message(with_bot, '@hk_acg_feeds', message)
         if result:
             logging.debug("writing into datastore: %s" % story.get('fbid'))
-            cls(id=story.get('fbid'), message=story.get('message'),
-                draft_time=story.get('draft_time'), post_time=story.get('post_time'),
-                likes=story.get('likes'), loves=story.get('loves'), wows=story.get('wows'),
-                hahas=story.get('hahas'), sads=story.get('sads'), angries=story.get('angries'),
-                comments=story.get('comments'), shares=story.get('shares')).put()
+            cls(
+                id=story.get('fbid'),
+                message=story.get('message'),
+                draft_time=story.get('draft_time'),
+                post_time=story.get('post_time'),
+                likes=story.get('likes'),
+                loves=story.get('loves'),
+                wows=story.get('wows'),
+                hahas=story.get('hahas'),
+                sads=story.get('sads'),
+                angries=story.get('angries'),
+                comments=story.get('comments'),
+                shares=story.get('shares')
+            ).put()
             memcache.set(story_id, 1)
