@@ -1,19 +1,19 @@
 cron:
 - description: check top stories in pink board
   url: /cron/pink
-  schedule: every 30 minutes from 00:00 to 23:30
+  schedule: every 15 minutes from 00:00 to 23:45
 - description: check top stories in blue board
   url: /cron/blue
-  schedule: every 30 minutes from 00:02 to 23:32
+  schedule: every 15 minutes from 00:02 to 23:47
 - description: check top stories in black board
   url: /cron/black
-  schedule: every 30 minutes from 00:04 to 23:34
+  schedule: every 15 minutes from 00:04 to 23:49
 - description: check top stories in cos board
   url: /cron/cos
-  schedule: every 30 minutes from 00:06 to 23:36
+  schedule: every 15 minutes from 00:06 to 23:51
 - description: check top stories in music_plastic board
   url: /cron/music_plastic
-  schedule: every 30 minutes from 00:08 to 23:38
+  schedule: every 15 minutes from 00:08 to 23:53
 - description: check top stories in maid board
   url: /cron/maid
-  schedule: every 30 minutes from 00:10 to 23:40
+  schedule: every 15 minutes from 00:10 to 23:55

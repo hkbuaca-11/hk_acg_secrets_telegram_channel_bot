@@ -28,9 +28,11 @@ def task(stories, which_board):
         #   logging.exception(ex)
         except Exception as e:
             logging.exception(e)
-
+            
     # TODO: don't fetch already loaded (>=150 score) stories
-    rpcs = map(lambda id: get_post_async(id, check_story), stories)
+    logging.debug(stories)
+    stories_new = filter(lambda id: not StoryPost.checkPostIdAlreadyExist(id), stories)
+    rpcs = map(lambda id: get_post_async(id, check_story), stories_new)
     for rpc in rpcs:
         rpc.wait()
 

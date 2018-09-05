@@ -72,16 +72,21 @@ class StoryPost(ndb.Model):
         return ret
 
     @classmethod
-    def add(cls, story, with_bot):
-        logging.debug("adding into database with bot %s" % with_bot)
-
-        story_id = str(story.get('fbid'))
+    def checkPostIdAlreadyExist(cls, story_id):
         if memcache.get(story_id):
             logging.info('STOP: {} in memcache'.format(story_id))
-            return
+            return True
         if ndb.Key(cls, story_id).get():
             logging.info('STOP: {} in DB'.format(story_id))
             memcache.set(story_id, 1)
+            return True
+        return False
+
+    @classmethod
+    def add(cls, story, with_bot):
+        logging.debug("adding into database with bot %s" % with_bot)
+        story_id = str(story.get('fbid'))
+        if cls.checkPostIdAlreadyExist(story_id):
             return
         logging.info('SEND: {}'.format(story_id))
 

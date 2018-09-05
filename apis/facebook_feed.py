@@ -51,7 +51,7 @@ def get_page_feed(page):
     result = call_method('%s/posts' % PAGES_ID[page],  # no 'feed', will grab others' posts
                          params={'fields': 'created_time,id',
                                  'since': int(time.time()) - 86400,  # within 24 hrs
-                                 'limit': 100})
+                                 'limit': 25})
     return result
 
 
