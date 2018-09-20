@@ -14,7 +14,7 @@ from helper import development
 class StoryPost(ndb.Model):
     fbid = ndb.StringProperty()
     message = ndb.TextProperty(indexed=False)
-    draft_time = ndb.TextProperty(indexed=False)
+    draft_time = ndb.DateTimeProperty(indexed=False)
     post_time = ndb.DateTimeProperty(indexed=False)
     telegram_post_time = ndb.DateTimeProperty(auto_now_add=True, indexed=False)
     likes = ndb.IntegerProperty(indexed=False)
@@ -134,6 +134,7 @@ class StoryPost(ndb.Model):
             result = send_message(with_bot, '@hk_acg_feeds', message)
         if result:
             logging.debug("writing into datastore: %s" % story.get('fbid'))
+            logging.debug(story)
             cls(
                 id=story.get('fbid'),
                 message=story.get('message'),
